@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Pelada FC (beta)</string>
+    <string name="action_settings">Settings</string>
+    
+    <string name="jog">Jogador</string>
+    <string name="cad_jog">Cadastrar Jogador</string>
+    <string name="sel_jog">Selecionar Jogador</string>
+    <string name="nome">Nome</string>
+    <string name="apelido">Apelido</string>
+    <string name="classificacao">Classificação</string>
+    <string name="gravar">Gravar</string>
+    
+    <string-array name="jogadores_array">
+        <item>Andre Firmo</item>
+        <item>Graciela</item>
+        <item>Luiz</item>
+        <item>Wesley</item>
+        <item>Flausino</item>
+        <item>Miralles</item>
+        <item>Neymar</item>
+        <item>Pelé</item>
+        <item>Rodolfo Rogrigues</item>
+    </string-array>
+</resources>
