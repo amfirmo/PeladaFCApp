@@ -15,18 +15,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 import br.com.mackenzie.peladafc.exception.DAOException;
 import br.com.mackenzie.peladafc.model.Jogador;
 
 public class SelecionarJogadorActivity extends PeladaFCActivity  implements OnClickListener{
-	Button button;
-	ListView listView;
-	ArrayAdapter<String> adapter;
-	Object[] jogadores;
-	List<Jogador> listaJogadores;
+	public ListView listView;
+	public ArrayAdapter<String> adapter;
+	public List<Jogador> listaJogadores;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 
@@ -34,31 +31,24 @@ public class SelecionarJogadorActivity extends PeladaFCActivity  implements OnCl
 		setContentView(R.layout.activity_selecionar_jogador);
 
 		findViewsById();
-		//jogadores = getResources().getStringArray(R.array.jogadores_array);
 		try {
-
 			listaJogadores = getFacadeController().obterJogadores();
 
 		} catch (DAOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
 		//obtem da lista de jogadores, seus nomes e apelidos "nome(apelido)"
 		List<String> lista = new LinkedList<String>();
 		for (Jogador jogador : listaJogadores) {
 			lista.add(jogador.getNome()+" ("+jogador.getApelido()+")");
 		}
-
 		adapter = new ArrayAdapter<String>(this,
 				android.R.layout.simple_list_item_multiple_choice,
 				lista);
 
 		listView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
 		listView.setAdapter(adapter);
-		//listView.setItemChecked(1, true);
-
-		//   button.setOnClickListener(this);
 	}
 
 	@Override
@@ -81,7 +71,6 @@ public class SelecionarJogadorActivity extends PeladaFCActivity  implements OnCl
 			outputStrArr[i] = selectedItems.get(i);
 		}
 
-
 		Context context = getApplicationContext();
 		CharSequence text = "Seleção Gravada";
 		int duration = Toast.LENGTH_SHORT;
@@ -96,7 +85,6 @@ public class SelecionarJogadorActivity extends PeladaFCActivity  implements OnCl
 		listView = (ListView) findViewById(R.id.listView1);
 		//button = (Button) findViewById(R.id.testbutton);
 	}
-
 
 	/**
 	 * Set up the {@link android.app.ActionBar}, if the API is available.
@@ -132,8 +120,6 @@ public class SelecionarJogadorActivity extends PeladaFCActivity  implements OnCl
 		return super.onOptionsItemSelected(item);
 	}
 
-
-
 	@Override
 	public void onClick(View v) {
 		SparseBooleanArray checked = listView.getCheckedItemPositions();
@@ -165,5 +151,4 @@ public class SelecionarJogadorActivity extends PeladaFCActivity  implements OnCl
         startActivity(intent);
 		 */
 	}
-
 }
