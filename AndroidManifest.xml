@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.myfirstapp"
+    package="com.peladafc.activity"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -14,7 +14,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.example.myfirstapp.MainActivity"
+            android:name="com.peladafc.activity.MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,20 +23,20 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.example.myfirstapp.CadastrarJogadorActivity"
+            android:name="com.peladafc.activity.CadastrarJogadorActivity"
             android:label="@string/app_name"
-            android:parentActivityName="com.example.myfirstapp.MainActivity" >
+            android:parentActivityName="com.peladafc.activity.MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.myfirstapp.MainActivity" />
+                android:value="com.peladafc.activity.MainActivity" />
         </activity>
         <activity
-            android:name="com.example.myfirstapp.SelecionarJogadorActivity"
+            android:name="com.peladafc.activity.SelecionarJogadorActivity"
             android:label="@string/app_name"
-            android:parentActivityName="com.example.myfirstapp.MainActivity" >
+            android:parentActivityName="com.peladafc.activity.MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.myfirstapp.MainActivity" />
+                android:value="com.peladafc.activity.MainActivity" />
         </activity>
     </application>
 
