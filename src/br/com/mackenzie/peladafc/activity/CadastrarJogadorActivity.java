@@ -44,7 +44,7 @@ public class CadastrarJogadorActivity extends PeladaFCActivity {
 		EditText apelidoEditText = (EditText) findViewById(R.id.apelidoText);
 		RatingBar classificacaoRatingBar = (RatingBar)  findViewById(R.id.classificacaoBar);
 		
-		float classificao = classificacaoRatingBar.getRating();
+		//float classificao = classificacaoRatingBar.getRating();
 		//adiciona o jogador pelo facade que usa o JogadorController	
 		try {
 			getFacadeController().adicionarJogador(nomeEditText.getText().toString(),
