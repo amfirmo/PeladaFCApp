@@ -1,4 +1,4 @@
-package com.peladafc.activity;
+package br.com.mackenzie.activity;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -12,8 +12,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.Toast;
-
-import com.peladafc.activity.R;
 
 public class CadastrarJogadorActivity extends Activity {
 

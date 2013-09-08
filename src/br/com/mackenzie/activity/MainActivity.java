@@ -1,4 +1,4 @@
-package com.peladafc.activity;
+package br.com.mackenzie.activity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -6,11 +6,9 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 
-import com.peladafc.activity.R;
-
 public class MainActivity extends Activity {
 	
-	public final static String EXTRA_MESSAGE = "com.peladafc.activity.MESSAGE";
+	public final static String EXTRA_MESSAGE = "br.com.mackenzie.activity.MESSAGE";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

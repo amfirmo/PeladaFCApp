@@ -3,13 +3,13 @@
     <!-- These settings headers are only used on tablets. -->
 
     <header
-        android:fragment="com.peladafc.activity.SettingsActivity$GeneralPreferenceFragment"
+        android:fragment="br.com.mackenzie.activity.SettingsActivity$GeneralPreferenceFragment"
         android:title="@string/pref_header_general" />
     <header
-        android:fragment="com.peladafc.activity.SettingsActivity$NotificationPreferenceFragment"
+        android:fragment="br.com.mackenzie.activity.SettingsActivity$NotificationPreferenceFragment"
         android:title="@string/pref_header_notifications" />
     <header
-        android:fragment="com.peladafc.activity.SettingsActivity$DataSyncPreferenceFragment"
+        android:fragment="br.com.mackenzie.activity.SettingsActivity$DataSyncPreferenceFragment"
         android:title="@string/pref_header_data_sync" />
 
 </preference-headers>

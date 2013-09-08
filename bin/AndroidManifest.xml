@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.peladafc.activity"
+    package="br.com.mackenzie.activity"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -14,7 +14,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.peladafc.activity.MainActivity"
+            android:name="br.com.mackenzie.activity.MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,20 +23,20 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.peladafc.activity.CadastrarJogadorActivity"
+            android:name="br.com.mackenzie.activity.CadastrarJogadorActivity"
             android:label="@string/app_name"
-            android:parentActivityName="com.peladafc.activity.MainActivity" >
+            android:parentActivityName="br.com.mackenzie.activity.MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.peladafc.activity.MainActivity" />
+                android:value="br.com.mackenzie.activity.MainActivity" />
         </activity>
         <activity
-            android:name="com.peladafc.activity.SelecionarJogadorActivity"
+            android:name="br.com.mackenzie.activity.SelecionarJogadorActivity"
             android:label="@string/app_name"
-            android:parentActivityName="com.peladafc.activity.MainActivity" >
+            android:parentActivityName="br.com.mackenzie.activity.MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.peladafc.activity.MainActivity" />
+                android:value="br.com.mackenzie.activity.MainActivity" />
         </activity>
     </application>
 

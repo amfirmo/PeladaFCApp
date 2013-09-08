@@ -1,4 +1,4 @@
-package com.peladafc.activity;
+package br.com.mackenzie.activity;
 
 import java.util.ArrayList;
 
@@ -17,8 +17,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
-
-import com.peladafc.activity.R;
 
 public class SelecionarJogadorActivity extends Activity  implements OnClickListener{
     Button button;
