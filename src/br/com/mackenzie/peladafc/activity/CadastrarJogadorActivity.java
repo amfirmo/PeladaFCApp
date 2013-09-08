@@ -1,7 +1,6 @@
-package br.com.mackenzie.activity;
+package br.com.mackenzie.peladafc.activity;
 
 import android.annotation.TargetApi;
-import android.app.Activity;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
@@ -12,8 +11,9 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.Toast;
+import br.com.mackenzie.peladafc.exception.DAOException;
 
-public class CadastrarJogadorActivity extends Activity {
+public class CadastrarJogadorActivity extends PeladaFCActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -45,16 +45,20 @@ public class CadastrarJogadorActivity extends Activity {
 		RatingBar classificacaoRatingBar = (RatingBar)  findViewById(R.id.classificacaoBar);
 		
 		float classificao = classificacaoRatingBar.getRating();
-		
-		System.out.println("nomeEditText : "+nomeEditText.getText());
-		System.out.println("apelidoEditText : "+apelidoEditText.getText());
-		System.out.println("classificao : "+classificao);
-		
+		//adiciona o jogador pelo facade que usa o JogadorController	
+		try {
+			getFacadeController().adicionarJogador(nomeEditText.getText().toString(),
+					                          apelidoEditText.getText().toString());
+		} catch (DAOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		//limpar o formulario para um nova insercao de dados
 		nomeEditText.setText("");
 		nomeEditText.requestFocus();
 		apelidoEditText.setText("");
 		classificacaoRatingBar.setRating(3);
-		
+		//exibe mensagem que o jogador foi adicionado
 		Context context = getApplicationContext();
 		CharSequence text = "Jogador Gravado!";
 		int duration = Toast.LENGTH_SHORT;
