@@ -25,8 +25,8 @@ public class DbHelper extends SQLiteOpenHelper {
 	private static final String JOGADOR_CREATE_TABLE = "CREATE TABLE "
 			+ TABELA_JOGADOR + "  (" + COLUNA_JOGADOR_ID
 			+ " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "
-			+ COLUNA_JOGADOR_APELIDO + " text not null ," 
 			+ COLUNA_JOGADOR_NOME + " text not null, "
+			+ COLUNA_JOGADOR_APELIDO + " text not null ," 
 			+ COLUNA_JOGADOR_CLASSIFICACAO + " INTEGER );";
 
 		private static final String MODALIDADE_CREATE_TABLE = "CREATE TABLE "
