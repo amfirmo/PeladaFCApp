@@ -1,5 +1,11 @@
 package br.com.mackenzie.peladafc.controller;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.StreamCorruptedException;
 import java.util.List;
 
 import android.content.Context;
@@ -23,16 +29,14 @@ import br.com.mackenzie.peladafc.model.Modalidade;
 
 /** */
 public class ModalidadeController {
-	/** */
-	public Modalidade modalidade;
 	
-	/** */
-	public ModalidadeDAO modalidadeDAO;
+	private Modalidade modalidade;
 	
-	/** */
-	public Modalidade escolherModalidade() {
-		return modalidade;
-	}
+	private ModalidadeDAO modalidadeDAO;
+	
+	private Context viewContext;
+	
+	private String FILENAME = "persistencia_memoria_modalidade";
 	
 	/**
 	 * @throws DAOException  */
@@ -40,13 +44,35 @@ public class ModalidadeController {
 		return this.modalidadeDAO.obterModalidades();
 	}
 	
-	/** */
-	public Modalidade obterModalidade() {
-		return null;
+	/**
+	 * @throws DAOException  */
+	public Modalidade obterModalidade(int id) throws DAOException {
+		return this.modalidadeDAO.obterModalidade(id);
+	}
+	
+	public Modalidade getModalidade() throws StreamCorruptedException, IOException, ClassNotFoundException { 
+		FileInputStream fis = this.viewContext.openFileInput(this.FILENAME);
+		ObjectInputStream ois = new ObjectInputStream(fis);
+		this.modalidade = (Modalidade)ois.readObject();
+		ois.close();
+		fis.close();
+		
+		return this.modalidade;
+	}
+	
+	public void setModalidade(Modalidade modalidade) throws IOException, ClassNotFoundException {
+		FileOutputStream fos = this.viewContext.openFileOutput(FILENAME,Context.MODE_PRIVATE);
+		ObjectOutputStream oos = new ObjectOutputStream(fos);
+		oos.writeObject(modalidade);
+		oos.close();
+		fos.close();
+		
+		this.modalidade = modalidade;
 	}
 	
 	public ModalidadeController(Context context) {
 		// TODO Auto-generated constructor stub
+		this.viewContext = context;
 		this.modalidadeDAO = new ModalidadeDAO(context);
 		this.modalidade = new Modalidade();
 	}
