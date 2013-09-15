@@ -1,7 +1,6 @@
 package br.com.mackenzie.peladafc.activity;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 import android.annotation.TargetApi;
@@ -18,42 +17,44 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 import br.com.mackenzie.peladafc.exception.DAOException;
-import br.com.mackenzie.peladafc.model.Jogador;
+import br.com.mackenzie.peladafc.model.Modalidade;
 
-public class SelecionarJogadorActivity extends PeladaFCActivity  implements OnClickListener{
+public class SelecionarModalidadeActivity extends PeladaFCActivity  implements OnClickListener{
 	private ListView listView;
-	private ArrayAdapter<Jogador> adapter;
+	private ArrayAdapter<Modalidade> adapter;
+	
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		List<Jogador> listaJogadores = null;
+		List<Modalidade> listaModalidades = null;
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_selecionar_jogador);
+		setContentView(R.layout.activity_selecionar_modalidade);
 
 		findViewsById();
 		try {
-			listaJogadores = getFacadeController().obterJogadores();
+			listaModalidades = getFacadeController().obterModalidades();
 
 		} catch (DAOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
-		adapter = new ArrayAdapter<Jogador>(this,
-				android.R.layout.simple_list_item_multiple_choice,
-				listaJogadores);
+		adapter = new ArrayAdapter<Modalidade>(this,
+				android.R.layout.simple_list_item_single_choice,
+				listaModalidades);
 
-		listView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+		listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
 		listView.setAdapter(adapter);
+		
 		//se a lista de jogadores selecionados nao esta vazia, marca os jogadores selecionados
-		if(!getJogadoresSelecionados().isEmpty() && !listaJogadores.isEmpty()){
+		if(getModalidadeSelecionada() != null && !listaModalidades.isEmpty()){
 			
-			for(int i = 0;i<listaJogadores.size(); i++){
+			for(int i = 0;i<listaModalidades.size(); i++){
 				int position = i;
 				
-				Jogador jogador = (Jogador) listView.getItemAtPosition(position);	
-				//se o jogador atual ja esta na lista de selecionados, marca-o
-				if(getJogadoresSelecionados().contains(jogador)){
+				Modalidade modalidade = (Modalidade) listView.getItemAtPosition(position);	
+				//se a modalidade atual ja esta na lista de selecionadas, marca-a
+				if(getModalidadeSelecionada().equals(modalidade)){
 					listView.setItemChecked(position, true);
 				}
 			}
@@ -64,17 +65,17 @@ public class SelecionarJogadorActivity extends PeladaFCActivity  implements OnCl
 	public void onBackPressed()
 	{
 		SparseBooleanArray checked = listView.getCheckedItemPositions();
-		setJogadoresSelecionados(new ArrayList<Jogador>());
+		setModalidadeSelecionada(null);
 
 		for (int i = 0; i < checked.size(); i++) {
 			// Item position in adapter
 			int position = checked.keyAt(i);
 			// Add sport if it is checked i.e.) == TRUE!
 			if (checked.valueAt(i))
-				getJogadoresSelecionados().add(adapter.getItem(position));
+				setModalidadeSelecionada(adapter.getItem(position));
 		}
 
-/*		Jogador[] outputStrArr = new Jogador[modalidadeSelecionada.size()];
+/*		Modalidade[] outputStrArr = new Modalidade[modalidadeSelecionada.size()];
 
 		for (int i = 0; i < modalidadeSelecionada.size(); i++) {
 			outputStrArr[i] = modalidadeSelecionada.get(i);
@@ -132,16 +133,16 @@ public class SelecionarJogadorActivity extends PeladaFCActivity  implements OnCl
 	@Override
 	public void onClick(View v) {
 		SparseBooleanArray checked = listView.getCheckedItemPositions();
-		ArrayList<Jogador> jogadoresSelecionados = new ArrayList<Jogador>();
+		ArrayList<Modalidade> modalidadeSelecionadas = new ArrayList<Modalidade>();
 		for (int i = 0; i < checked.size(); i++) {
 			// Item position in adapter
 			int position = checked.keyAt(i);
 			// Add sport if it is checked i.e.) == TRUE!
 			if (checked.valueAt(i))
-				jogadoresSelecionados.add(adapter.getItem(position));
+				modalidadeSelecionadas.add(adapter.getItem(position));
 		}
 
-/*		Jogador[] outputStrArr = new Jogador[modalidadeSelecionada.size()];
+/*		Modalidade[] outputStrArr = new Modalidade[modalidadeSelecionada.size()];
 
 		for (int i = 0; i < modalidadeSelecionada.size(); i++) {
 			outputStrArr[i] = modalidadeSelecionada.get(i);

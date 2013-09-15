@@ -36,4 +36,35 @@ public class Time {
 	
 	/** */
 	public TimeController Unnamed3;
+
+	@Override
+	public String toString() {
+		return "Time: " + nome;
+	}
+
+	public Object getId() {
+		return id;
+	}
+
+	public void setId(Object id) {
+		this.id = id;
+	}
+
+	public Object getNome() {
+		return nome;
+	}
+
+	public void setNome(Object nome) {
+		this.nome = nome;
+	}
+
+	public List<Jogador> getEscalacao() {
+		return escalacao;
+	}
+
+	public void setEscalacao(List<Jogador> escalacao) {
+		this.escalacao = escalacao;
+	}
+	
+	
 }

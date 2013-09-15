@@ -9,6 +9,8 @@ import br.com.mackenzie.peladafc.controller.PartidaController;
 import br.com.mackenzie.peladafc.controller.TimeController;
 import br.com.mackenzie.peladafc.exception.DAOException;
 import br.com.mackenzie.peladafc.model.Jogador;
+import br.com.mackenzie.peladafc.model.Modalidade;
+import br.com.mackenzie.peladafc.model.Time;
 
 public class FacadeController {
 
@@ -40,4 +42,27 @@ public class FacadeController {
 	public List<Jogador> obterJogadores() throws DAOException{
 		return this.jogadorController.obterJogadores();
 	}
+	/**
+	 * Obtem todas as modalidades disponiveis.
+	 * @return List<Modalidade>
+	 * @throws DAOException
+	 */
+	public List<Modalidade> obterModalidades() throws DAOException{
+		return this.modalidadeController.obterModalidades();
+	}
+	/**
+	 * Monta os Times por meio de sorteio
+	 * @param jogadores (Lista de jogadores que participarao do sorteio)
+	 * @param qtdJogadoresPorTime (Quantidade de jogadores a ser distribuido por time)
+	 * @throws DAOException
+	 */
+	public void sortear(List<Jogador>jogadores, int qtdJogadoresPorTime) throws DAOException{
+		this.timeController.sortear(jogadores, qtdJogadoresPorTime);
+	}
+	
+	public Time obterTimePorId(int id) throws DAOException{
+		return this.timeController.obterTimePorId(id);
+	}
+
+	
 }

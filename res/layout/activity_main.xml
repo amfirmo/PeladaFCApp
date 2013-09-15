@@ -36,4 +36,22 @@
         android:onClick="cadastarJogador"
         android:text="@string/cad_jog" />
 
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/button2"
+        android:layout_centerHorizontal="true"
+        android:onClick="selecionarModalidade"
+        android:text="@string/sel_modalidade" />
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/button3"
+        android:layout_centerHorizontal="true"
+        android:onClick="criarTimes"
+        android:text="@string/create_teams" />
+
 </RelativeLayout>
