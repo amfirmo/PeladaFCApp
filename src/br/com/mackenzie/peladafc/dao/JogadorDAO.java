@@ -103,8 +103,11 @@ public class JogadorDAO {
 	public List<Jogador> obterListaJogadores()  throws DAOException {
 		List<Jogador> jogadores = new ArrayList<Jogador>();
 		database = dbHelper.getWritableDatabase();
+		
+		String s =  "SELECT " + DbHelper.COLUNA_JOGADOR_ID + " , " + DbHelper.COLUNA_JOGADOR_NOME+ " , " +
+				DbHelper.COLUNA_JOGADOR_APELIDO + " , " +DbHelper.COLUNA_JOGADOR_CLASSIFICACAO + " FROM " + DbHelper.TABELA_JOGADOR ; 
 		try{
-			Cursor cursor = database.rawQuery("SELECT * FROM " + DbHelper.TABELA_JOGADOR, null );
+			Cursor cursor = database.rawQuery(s, null );
 	    	 while(cursor.moveToNext()){
 	 	    	jogadores.add(cursorToJogador(cursor));
 	 		}
