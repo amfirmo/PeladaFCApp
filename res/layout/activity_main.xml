@@ -21,8 +21,9 @@
         android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/button3"
+        android:layout_alignRight="@+id/button3"
         android:layout_below="@+id/button1"
-        android:layout_centerHorizontal="true"
         android:onClick="selecionarJogador"
         android:text="@string/sel_jog" />
 
@@ -30,8 +31,9 @@
         android:id="@+id/button1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/button2"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
+        android:layout_alignRight="@+id/button2"
         android:layout_marginTop="16dp"
         android:onClick="cadastarJogador"
         android:text="@string/cad_jog" />
@@ -49,9 +51,20 @@
         android:id="@+id/button4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/button3"
+        android:layout_alignRight="@+id/button3"
         android:layout_below="@+id/button3"
-        android:layout_centerHorizontal="true"
         android:onClick="criarTimes"
         android:text="@string/create_teams" />
+
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/button4"
+        android:layout_alignRight="@+id/button2"
+        android:layout_below="@+id/button4"
+        android:onClick="iniciarPartida"
+        android:text="@string/iniciar_partida" />
 
 </RelativeLayout>

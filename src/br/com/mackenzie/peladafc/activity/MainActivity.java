@@ -51,8 +51,8 @@ public class MainActivity extends PeladaFCActivity {
 
     		Toast toast = Toast.makeText(context, text, Toast.LENGTH_SHORT);
     		toast.show();
-    		//TODO o correto é no mínimo o dobro de jogadores
-    	}else if(getJogadoresSelecionados().size() < getModalidadeSelecionada().getJogadoresPorTime()){
+    		//no mínimo o dobro de jogadores
+    	}else if(getJogadoresSelecionados().size() < ((getModalidadeSelecionada().getJogadoresPorTime())*2)){
     		Context context = getApplicationContext();
     		CharSequence text = "A quantidade de jogadores selecionados " +
     				            "é menor que o esperado pela modalidade selecionada!";
@@ -62,5 +62,10 @@ public class MainActivity extends PeladaFCActivity {
             Intent intent = new Intent(this, CriarTimesActivity.class);
             startActivity(intent);
     	}
+    }
+    
+    public void iniciarPartida(View view){
+        Intent intent = new Intent(this, PartidaActivity.class);
+        startActivity(intent);
     }
 }
