@@ -38,6 +38,30 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="br.com.mackenzie.peladafc.activity.MainActivity" />
         </activity>
+        <activity
+            android:name="br.com.mackenzie.peladafc.activity.SelecionarModalidadeActivity"
+            android:label="@string/app_name"
+            android:parentActivityName="br.com.mackenzie.peladafc.activity.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="br.com.mackenzie.peladafc.activity.MainActivity" />
+        </activity>
+        <activity
+            android:name="br.com.mackenzie.peladafc.activity.CriarTimesActivity"
+            android:label="@string/app_name"
+            android:parentActivityName="br.com.mackenzie.peladafc.activity.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="br.com.mackenzie.peladafc.activity.MainActivity" />
+        </activity>
+        <activity
+            android:name="br.com.mackenzie.peladafc.activity.PartidaActivity"
+            android:label="@string/app_name"
+            android:parentActivityName="br.com.mackenzie.peladafc.activity.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="br.com.mackenzie.peladafc.activity.MainActivity" />
+        </activity>
     </application>
 
 </manifest>
