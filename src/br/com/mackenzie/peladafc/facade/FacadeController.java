@@ -57,7 +57,7 @@ public class FacadeController {
 	 * @throws DAOException
 	 */
 	public void sortear(List<Jogador>jogadores, int qtdJogadoresPorTime) throws DAOException{
-		this.timeController.sortear(jogadores, qtdJogadoresPorTime);
+		timeController.sortear(jogadores, qtdJogadoresPorTime);
 	}
 	
 	public Time obterTimePorId(int id) throws DAOException{

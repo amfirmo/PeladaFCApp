@@ -1,5 +1,6 @@
 package br.com.mackenzie.peladafc.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mackenzie.peladafc.controller.TimeController;
@@ -26,7 +27,7 @@ public class Time {
 	private Object nome;
 	
 	/** */
-	private List<Jogador> escalacao;
+	List<Jogador> escalacao;
 	
 	/** */
 	public Partida Unnamed1;
@@ -40,6 +41,15 @@ public class Time {
 	@Override
 	public String toString() {
 		return "Time: " + nome;
+	}
+	
+	public Time(){
+		escalacao = new ArrayList<Jogador>();
+	}
+	
+	/** */
+	public void adicionar(Jogador jogador) {
+		escalacao.add(jogador);
 	}
 
 	public Object getId() {

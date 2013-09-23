@@ -24,7 +24,7 @@ import br.com.mackenzie.peladafc.exception.*;
 public class JogadorController {
 	/** */
 	private List<Jogador> jogadores;
-	
+
 	/** */
 	private Jogador jogador;
 		
@@ -80,5 +80,16 @@ public class JogadorController {
 		this.jogadorDAO = new JogadorDAO(context);
 	}
 	
+	public JogadorController() {
+		jogadores = new ArrayList<Jogador>();
+	}
+	
+	public List<Jogador> getJogadores() {
+		return jogadores;
+	}
+
+	public void setJogadores(List<Jogador> jogadores) {
+		this.jogadores = jogadores;
+	}
 	
 }
