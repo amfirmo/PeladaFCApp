@@ -32,8 +32,15 @@ public class CriarTimesActivity extends PeladaFCActivity  implements OnClickList
 		
 		
 		try {
-			getFacadeController().sortear(PeladaFCActivity.getJogadoresSelecionados(),
+			listaTimes = getFacadeController().sortear(PeladaFCActivity.getJogadoresSelecionados(),
 										  PeladaFCActivity.getModalidadeSelecionada().getJogadoresPorTime());
+			
+			for (int i = 0; i < listaTimes.size(); i++) {
+				Time time = listaTimes.get(i);
+				time.setNome(i + 1);
+				times.append(i, time);
+			}
+			
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -44,7 +51,7 @@ public class CriarTimesActivity extends PeladaFCActivity  implements OnClickList
 			
 			//listaTimes.add(getFacadeController().obterTimePorId(0));
 			//listaTimes.add(getFacadeController().obterTimePorId(1));
-			Time timeA = new Time();
+			/*Time timeA = new Time();
 			timeA.setNome("A");
 			timeA.setEscalacao(getJogadoresSelecionados());
 			Time timeB = new Time();
@@ -54,7 +61,7 @@ public class CriarTimesActivity extends PeladaFCActivity  implements OnClickList
 			listaTimes.add(timeA);
 			listaTimes.add(timeB);
 			times.append(0, timeA);
-			times.append(1, timeB);
+			times.append(1, timeB);*/
 
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

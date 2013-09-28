@@ -47,9 +47,17 @@ public class TimeController {
 	public TimeDAO timeDAO ;
 	
 	public TimeController() {
-		times = new ArrayList<Time>();
+		setTimes(new ArrayList<Time>());
 	}
 	
+	public List<Time> getTimes() {
+		return times;
+	}
+
+	public void setTimes(List<Time> times) {
+		this.times = times;
+	}
+
 	/**
 	 * @throws DAOException  */
 	public List<Time> sortear(List<Jogador> jogadores, int qtdJogadoresPorTime) throws DAOException {

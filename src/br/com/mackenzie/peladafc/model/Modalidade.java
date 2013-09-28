@@ -22,6 +22,8 @@ public class Modalidade implements Serializable {
 	
 	/** */
 	private int jogadoresPorTime;
+	
+	private int tempoDaPartida;
 
 	public int getId() {
 		return id;
@@ -45,6 +47,14 @@ public class Modalidade implements Serializable {
 
 	public void setJogadoresPorTime(int jogadoresPorTime) {
 		this.jogadoresPorTime = jogadoresPorTime;
+	}
+
+	public int getTempoDaPartida() {
+		return tempoDaPartida;
+	}
+
+	public void setTempoDaPartida(int tempoDaPartida) {
+		this.tempoDaPartida = tempoDaPartida;
 	}
 
 	@Override
