@@ -1,30 +1,26 @@
 package br.com.mackenzie.peladafc.activity;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import android.annotation.TargetApi;
-import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
-import android.util.SparseArray;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ExpandableListView;
 import android.widget.ListView;
-import android.widget.Toast;
 import br.com.mackenzie.peladafc.adapter.TimesListAdapter;
 import br.com.mackenzie.peladafc.model.Time;
 
 public class CriarTimesActivity extends PeladaFCActivity  implements OnClickListener{
-	private SparseArray<Time> times = new SparseArray<Time>();
+	private List<Time> times = new LinkedList<Time>();
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		List<Time> listaTimes = new ArrayList<Time>();
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_criar_times);
 
@@ -51,10 +47,10 @@ public class CriarTimesActivity extends PeladaFCActivity  implements OnClickList
 			timeB.setEscalacao(getJogadoresSelecionados());
 			timeB.setNome("B");
 			
-			listaTimes.add(timeA);
-			listaTimes.add(timeB);
-			times.append(0, timeA);
-			times.append(1, timeB);
+			times.add(0, timeA);
+			times.add(1, timeB);
+			
+			setTimesFormados(times);
 
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -98,14 +94,8 @@ public class CriarTimesActivity extends PeladaFCActivity  implements OnClickList
 		for (int i = 0; i < modalidadeSelecionada.size(); i++) {
 			outputStrArr[i] = modalidadeSelecionada.get(i);
 		}
-*/
-		Context context = getApplicationContext();
-		CharSequence text = "Sua Seleção foi Gravada com Sucesso!";
-		int duration = Toast.LENGTH_SHORT;
-
-		Toast toast = Toast.makeText(context, text, duration);
-		toast.show();
-
+ 		*/
+		//showMessageShort("Sua Seleção foi Gravada com Sucesso!");
 		super.onBackPressed();
 	}
 

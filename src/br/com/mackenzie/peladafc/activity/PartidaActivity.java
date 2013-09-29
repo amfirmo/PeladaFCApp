@@ -1,7 +1,14 @@
 package br.com.mackenzie.peladafc.activity;
 
+import java.util.LinkedList;
+import java.util.List;
+
+import br.com.mackenzie.peladafc.adapter.TimesListAdapter;
+import br.com.mackenzie.peladafc.model.Time;
 import android.annotation.TargetApi;
-import android.content.Context;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
@@ -13,11 +20,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Chronometer;
-import android.widget.Toast;
+import android.widget.ExpandableListView;
+import android.widget.ListView;
+import android.widget.TextView;
 
 public class PartidaActivity extends PeladaFCActivity {
-	Ringtone r = null;
-
+	private Ringtone ring = null;
+	private boolean pause = false;
+	private long elapsedRealtimeOnPause = 0 ;
+	private boolean running = false;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -25,30 +36,50 @@ public class PartidaActivity extends PeladaFCActivity {
 		// Show the Up button in the action bar.
 		setupActionBar();
 		Chronometer chronometer = ((Chronometer) findViewById(R.id.chronometer1));
-		  chronometer.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {                      
-		        @Override
-		        public void onChronometerTick(Chronometer chronometer) {
-		            long elapsedMillis = SystemClock.elapsedRealtime() - chronometer.getBase();
-		            if(elapsedMillis>10000){
-		            	((Chronometer) findViewById(R.id.chronometer1)).stop();
-		            	
-		        		Context context = getApplicationContext();
-		        		CharSequence text = "Final de Partida!";
-		        		int duration = Toast.LENGTH_LONG;
+		chronometer.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {                      
+			@Override
+			public void onChronometerTick(Chronometer chronometer) {
+				long elapsedMillis = SystemClock.elapsedRealtime() - chronometer.getBase();
+				//TODO o tempo deve ser o definido na modalidade
+				if(elapsedMillis>10000){
 
-		        		Toast toast = Toast.makeText(context, text, duration);
-		        		toast.show();
-		        		
-		        		try {
-		        	        Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
-		        	        r = RingtoneManager.getRingtone(getApplicationContext(), notification);
-		        	        r.play();
-		        	        
-		        	    } catch (Exception e) {}
-		        		
-		            }
-		        }
-		    });
+					((Chronometer) findViewById(R.id.chronometer1)).stop();
+
+					//showMessageLong("Final de Partida!");
+					
+
+					try {
+						if(ring == null){
+							Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
+							ring = RingtoneManager.getRingtone(getApplicationContext(), notification);
+						}
+						if(!ring.isPlaying()){
+							ring.play();
+						}
+						//em caso de erro aqui nao ha muito o que fazer...    
+					} catch (Exception e) {e.printStackTrace();}
+
+				}
+			}
+		});
+
+		//chronometer.setFormat("00:00");
+
+		List<Time> time1 = new LinkedList<Time>();
+		List<Time> time2 = new LinkedList<Time>();
+
+		time1.add(getTimesFormados().get(0));
+		time2.add(getTimesFormados().get(1));
+
+		ExpandableListView listView = (ExpandableListView) findViewById(R.id.expandableListView1);
+		listView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+		TimesListAdapter adapter1 = new TimesListAdapter(this,time1);
+		listView.setAdapter(adapter1);
+
+		ExpandableListView listView2 = (ExpandableListView) findViewById(R.id.expandableListView2);
+		listView2.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+		TimesListAdapter adapter2 = new TimesListAdapter(this,time2);
+		listView2.setAdapter(adapter2);
 	}
 
 	/**
@@ -84,15 +115,102 @@ public class PartidaActivity extends PeladaFCActivity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
-	
-    public void startChronometer(View view) {
-    	Chronometer chr = ((Chronometer) findViewById(R.id.chronometer1));
-    	chr.setBase(SystemClock.elapsedRealtime());
-    	chr.start();
-    }
 
-    public void stopChronometer(View view) {
-        ((Chronometer) findViewById(R.id.chronometer1)).stop();
-        r.stop();
-    }
+	public void startChronometer(View view) {
+		Chronometer chr = ((Chronometer) findViewById(R.id.chronometer1));
+		long base = SystemClock.elapsedRealtime();
+		if(pause){
+
+			base = base-elapsedRealtimeOnPause;
+			chr.setBase(base);
+
+			pause = false;
+		}else{
+			chr.setBase(base);
+
+		}
+		elapsedRealtimeOnPause = base;
+		chr.start();
+		running = true;
+		showMessageShort("O jogo começou!");
+	}
+
+	public void stopChronometer(View view) {
+		((Chronometer) findViewById(R.id.chronometer1)).stop();
+		running = false;
+		if(ring != null){
+			ring.stop();
+		}
+		showAlert();
+	}
+
+	public void pauseChronometer(View view) {
+		((Chronometer) findViewById(R.id.chronometer1)).stop();
+		running = false;
+		pause = true;
+		elapsedRealtimeOnPause = SystemClock.elapsedRealtime()-elapsedRealtimeOnPause;
+		showMessageShort("Jogo Pausado!");
+	}
+
+	public void golA(View view) {
+		if(podeAnotarGols()){
+			TextView textView = (TextView) findViewById(R.id.textGolsA);
+			int gols = Integer.parseInt(textView.getText().toString());
+			gols = gols+1;
+			textView.setText(""+gols);
+		}
+	}
+
+	public void golB(View view) {
+		if(podeAnotarGols()){
+			TextView textView = (TextView) findViewById(R.id.textGolsB);
+			int gols = Integer.parseInt(textView.getText().toString());
+			gols = gols+1;
+			textView.setText(""+gols);
+		}	
+	}
+
+	private boolean podeAnotarGols(){
+		if(!running){
+			showMessageShort("O jogo está parado, não é possível anotar gols!!!");
+			return false;
+		}else{
+			return true;
+		}
+	}
+	
+	public void showAlert(){
+		AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+
+		// set dialog message
+		alertDialogBuilder
+		.setTitle("A PARTIDA TERMINOU!!!")
+		.setMessage("Deseja avaliar os jogadores?")
+		.setCancelable(false)
+		//.setCancelable(false)
+		.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog,int id) {
+				// if this button is clicked, close
+				// current activity
+				Intent intent = new Intent(PartidaActivity.this, ClassificarJogadoresActivity.class);
+				startActivity(intent);
+				
+			}
+			})
+		.setNegativeButton("Não", new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog,int id) {
+				// if this button is clicked, just close
+				// the dialog box and do nothing
+				PartidaActivity.this.finish();
+			}
+		}
+		);
+
+		// create alert dialog
+		AlertDialog alertDialog = alertDialogBuilder.create();
+
+		// show it
+		alertDialog.show();
+	}
+
 }

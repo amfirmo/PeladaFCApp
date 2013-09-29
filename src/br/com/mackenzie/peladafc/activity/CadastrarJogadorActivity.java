@@ -1,7 +1,6 @@
 package br.com.mackenzie.peladafc.activity;
 
 import android.annotation.TargetApi;
-import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
@@ -10,7 +9,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RatingBar;
-import android.widget.Toast;
 import br.com.mackenzie.peladafc.exception.DAOException;
 
 public class CadastrarJogadorActivity extends PeladaFCActivity {
@@ -59,12 +57,7 @@ public class CadastrarJogadorActivity extends PeladaFCActivity {
 		apelidoEditText.setText("");
 		classificacaoRatingBar.setRating(3);
 		//exibe mensagem que o jogador foi adicionado
-		Context context = getApplicationContext();
-		CharSequence text = "Jogador Gravado!";
-		int duration = Toast.LENGTH_SHORT;
-
-		Toast toast = Toast.makeText(context, text, duration);
-		toast.show();
+		showMessageShort("Jogador Gravado!");
     }
 
 	/**

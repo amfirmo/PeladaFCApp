@@ -1,10 +1,8 @@
 package br.com.mackenzie.peladafc.adapter;
 
-import br.com.mackenzie.peladafc.activity.R;
-import br.com.mackenzie.peladafc.model.Jogador;
-import br.com.mackenzie.peladafc.model.Time;
+import java.util.List;
+
 import android.app.Activity;
-import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -13,14 +11,17 @@ import android.widget.BaseExpandableListAdapter;
 import android.widget.CheckedTextView;
 import android.widget.TextView;
 import android.widget.Toast;
+import br.com.mackenzie.peladafc.activity.R;
+import br.com.mackenzie.peladafc.model.Jogador;
+import br.com.mackenzie.peladafc.model.Time;
 
 public class TimesListAdapter extends BaseExpandableListAdapter {
 
-  private final SparseArray<Time> groups;
+  private final List<Time> groups;
   public LayoutInflater inflater;
   public Activity activity;
 
-  public TimesListAdapter(Activity act, SparseArray<Time> groups) {
+  public TimesListAdapter(Activity act, List<Time> groups) {
     activity = act;
     this.groups = groups;
     inflater = act.getLayoutInflater();

@@ -1,11 +1,9 @@
 package br.com.mackenzie.peladafc.activity;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 import android.annotation.TargetApi;
-import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
@@ -16,7 +14,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 import br.com.mackenzie.peladafc.exception.DAOException;
 import br.com.mackenzie.peladafc.model.Jogador;
 
@@ -80,13 +77,8 @@ public class SelecionarJogadorActivity extends PeladaFCActivity  implements OnCl
 			outputStrArr[i] = modalidadeSelecionada.get(i);
 		}
 */
-		Context context = getApplicationContext();
-		CharSequence text = "Sua Seleção foi Gravada com Sucesso!";
-		int duration = Toast.LENGTH_SHORT;
-
-		Toast toast = Toast.makeText(context, text, duration);
-		toast.show();
-
+		showMessageShort("Sua Seleção foi Gravada com Sucesso!");
+		
 		super.onBackPressed();
 	}
 

@@ -35,6 +35,14 @@ public class FacadeController {
 		this.jogadorController.adicionar(nome, apelido);
 	}
 	/**
+	 * Atualiza os dados de um jogador.
+	 * @param jogador referencia para o Jogador a ser atualizado.
+	 * @throws DAOException
+	 */
+	public void atualizarJogador(Jogador jogador) throws DAOException{
+		this.jogadorController.atualizar(jogador);
+	}
+	/**
 	 * Obtem todos os jogadores cadastrados na base.
 	 * @return List<Jogador>
 	 * @throws DAOException 

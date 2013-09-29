@@ -13,8 +13,14 @@
     <string name="apelido">Apelido</string>
     <string name="classificacao">Classificação</string>
     <string name="gravar">Gravar</string>
-    <string name="iniciar_partida">Iniciar Partida</string>
-    <string name="parar_partida">Parar Partida</string>
+    <string name="iniciar_partida">Iniciar</string>
+    <string name="parar_partida">Parar</string>
+    <string name="pausar_partida">Pausar</string>
+    <string name="zero">0</string>
+    <string name="versus">  X  </string>
+    <string name="gol">Gol!</string>
+    <string name="classificar_jogadores">Classificar Jogadores</string>
+    
 
     <string-array name="jogadores_array">
         <item>Andre Firmo</item>
@@ -34,5 +40,6 @@
     <string name="title_activity_partida">PartidaActivity</string>
     <string name="comecar">Começar</string>
     <string name="parar">Parar</string>
+    <string name="title_activity_classificar_jogadores">ClassificarJogadoresActivity</string>
 
 </resources>
