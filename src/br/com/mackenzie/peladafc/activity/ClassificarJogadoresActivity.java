@@ -28,12 +28,12 @@ public class ClassificarJogadoresActivity extends PeladaFCActivity {
 		
 	    ExpandableListView listView = (ExpandableListView) findViewById(R.id.expandableListView1);
 	    listView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
-	    TimesListClassificationAdapter adapter = new TimesListClassificationAdapter(this,getTimesFormados());
+	    TimesListClassificationAdapter adapter = new TimesListClassificationAdapter(this,getTimesSelecionados());
 	    listView.setAdapter(adapter);
 	}
 	
 	public void classificar(View view){
-		List<Time> times = getTimesFormados();
+		List<Time> times = getTimesSelecionados();
 		
 		for (Time time : times) {
 			List<Jogador> jogadores = time.getEscalacao();

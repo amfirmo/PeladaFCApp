@@ -29,7 +29,7 @@ public class ModalidadeDAO {
 	private SQLiteDatabase database;
 	private DbHelper dbHelper;
 	private String[] allColumns = {DbHelper.COLUNA_MODALIDADE_ID, DbHelper.COLUNA_MODALIDADE_DESCRICAO, 
-			DbHelper.COLUNA_MODALIDADE_QTDE_JOGADORES};
+			DbHelper.COLUNA_MODALIDADE_QTDE_JOGADORES, DbHelper.COLUNA_MODALIDADE_TEMPO_PARTIDA};
 	
 	
 	public ModalidadeDAO(Context context) {
@@ -42,6 +42,7 @@ public class ModalidadeDAO {
 		modalidade.setId(cursor.getInt(0));
 		modalidade.setDescricao(cursor.getString(1));
 		modalidade.setJogadoresPorTime(cursor.getInt(2));
+		modalidade.setTempoDaPartida(cursor.getInt(3));
 		return modalidade;
 	}
 	/**

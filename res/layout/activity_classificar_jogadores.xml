@@ -16,7 +16,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="top|center"
         android:layout_weight="0.53"
-        android:text="@string/classificar_jogadores" />
+        android:text="@string/classificar_jogadores"
+        android:textSize="20sp" />
 
     <ExpandableListView
         android:id="@+id/expandableListView1"

@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.widget.Toast;
 import br.com.mackenzie.peladafc.facade.FacadeController;
 import br.com.mackenzie.peladafc.model.Jogador;
@@ -16,6 +14,15 @@ public abstract class PeladaFCActivity extends Activity{
 
 	private FacadeController facadeController;
 	private static List<Time> timesFormados = new ArrayList<Time>();
+	private static List<Time> timesSelecionados = new ArrayList<Time>(2);
+	public static List<Time> getTimesSelecionados() {
+		return timesSelecionados;
+	}
+
+	public static void setTimesSelecionados(List<Time> timesSelecionados) {
+		PeladaFCActivity.timesSelecionados = timesSelecionados;
+	}
+
 	private static List<Jogador> jogadoresSelecionados = new ArrayList<Jogador>();
 	private static Modalidade modalidadeSelecionada = null;
 

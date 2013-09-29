@@ -1,5 +1,6 @@
 package br.com.mackenzie.peladafc.adapter;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import android.app.Activity;
@@ -7,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.CheckedTextView;
 import android.widget.TextView;
@@ -25,6 +27,14 @@ public class TimesListAdapter extends BaseExpandableListAdapter {
     activity = act;
     this.groups = groups;
     inflater = act.getLayoutInflater();
+  }
+  
+  public TimesListAdapter(Activity act, Time time) {
+	    List<Time> listTime = new LinkedList<Time>();
+	    listTime.add(time);
+	    activity = act;
+	    this.groups =listTime;
+	    inflater = act.getLayoutInflater();
   }
 
   @Override
@@ -96,6 +106,8 @@ public class TimesListAdapter extends BaseExpandableListAdapter {
     Time group = (Time) getGroup(groupPosition);
     ((CheckedTextView) convertView).setText(group.toString());
     ((CheckedTextView) convertView).setChecked(isExpanded);
+    
+    
     return convertView;
   }
 
@@ -106,6 +118,6 @@ public class TimesListAdapter extends BaseExpandableListAdapter {
 
   @Override
   public boolean isChildSelectable(int groupPosition, int childPosition) {
-    return false;
+    return true;
   }
 } 

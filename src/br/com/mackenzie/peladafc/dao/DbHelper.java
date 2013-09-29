@@ -21,6 +21,7 @@ public class DbHelper extends SQLiteOpenHelper {
 	public static final String COLUNA_MODALIDADE_ID = "modalidade_id";
 	public static final String COLUNA_MODALIDADE_DESCRICAO = "modalidade_descricao";
 	public static final String COLUNA_MODALIDADE_QTDE_JOGADORES = "modalidade_qtde_jogadores";
+	public static final String COLUNA_MODALIDADE_TEMPO_PARTIDA = "modalidade_tempo_partida";
 	
 	private static final String JOGADOR_CREATE_TABLE = "CREATE TABLE "
 			+ TABELA_JOGADOR + "  (" + COLUNA_JOGADOR_ID
@@ -33,7 +34,8 @@ public class DbHelper extends SQLiteOpenHelper {
 			+ TABELA_MODALIDADE + "  ( " + COLUNA_MODALIDADE_ID
 			+ " INTEGER PRIMARY KEY ,  "
 			+ COLUNA_MODALIDADE_DESCRICAO + " text not null ,  "
-			+ COLUNA_MODALIDADE_QTDE_JOGADORES + " INTEGER );";
+			+ COLUNA_MODALIDADE_QTDE_JOGADORES + " INTEGER ,"
+			+ COLUNA_MODALIDADE_TEMPO_PARTIDA + " INTEGER NOT NULL );";
 
 		public DbHelper(Context context) {
 			super(context, DB_NAME, null, DATABASE_VERSION);
@@ -61,16 +63,19 @@ public class DbHelper extends SQLiteOpenHelper {
 			values.put(COLUNA_MODALIDADE_ID, 1);
 			values.put(COLUNA_MODALIDADE_DESCRICAO, "CAMPO");
 			values.put(COLUNA_MODALIDADE_QTDE_JOGADORES, 11);
+			values.put(COLUNA_MODALIDADE_TEMPO_PARTIDA, 20);
 			db.insert(TABELA_MODALIDADE, null, values);
 			values.clear();
 			values.put(COLUNA_MODALIDADE_ID, 2);
 			values.put(COLUNA_MODALIDADE_DESCRICAO, "QUADRA");
 			values.put(COLUNA_MODALIDADE_QTDE_JOGADORES, 5);
+			values.put(COLUNA_MODALIDADE_TEMPO_PARTIDA, 10);
 			db.insert(TABELA_MODALIDADE, null, values);
 			values.clear();
 			values.put(COLUNA_MODALIDADE_ID, 3);
 			values.put(COLUNA_MODALIDADE_DESCRICAO, "SOCIETY");
 			values.put(COLUNA_MODALIDADE_QTDE_JOGADORES, 7);
+			values.put(COLUNA_MODALIDADE_TEMPO_PARTIDA, 15);
 			db.insert(TABELA_MODALIDADE, null, values);
 			values.clear();
 			

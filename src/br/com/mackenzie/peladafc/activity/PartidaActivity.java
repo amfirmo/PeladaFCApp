@@ -1,10 +1,5 @@
 package br.com.mackenzie.peladafc.activity;
 
-import java.util.LinkedList;
-import java.util.List;
-
-import br.com.mackenzie.peladafc.adapter.TimesListAdapter;
-import br.com.mackenzie.peladafc.model.Time;
 import android.annotation.TargetApi;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -23,12 +18,17 @@ import android.widget.Chronometer;
 import android.widget.ExpandableListView;
 import android.widget.ListView;
 import android.widget.TextView;
+import br.com.mackenzie.peladafc.adapter.TimesListAdapter;
+import br.com.mackenzie.peladafc.model.Time;
 
 public class PartidaActivity extends PeladaFCActivity {
 	private Ringtone ring = null;
 	private boolean pause = false;
 	private long elapsedRealtimeOnPause = 0 ;
 	private boolean running = false;
+	private Time time1 = null;
+	private Time time2 = null;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -40,13 +40,14 @@ public class PartidaActivity extends PeladaFCActivity {
 			@Override
 			public void onChronometerTick(Chronometer chronometer) {
 				long elapsedMillis = SystemClock.elapsedRealtime() - chronometer.getBase();
+				
 				//TODO o tempo deve ser o definido na modalidade
 				if(elapsedMillis>10000){
 
 					((Chronometer) findViewById(R.id.chronometer1)).stop();
 
-					//showMessageLong("Final de Partida!");
-					
+					showMessageLong("Final de Partida! Pressione \"Parar\"");
+
 
 					try {
 						if(ring == null){
@@ -63,13 +64,8 @@ public class PartidaActivity extends PeladaFCActivity {
 			}
 		});
 
-		//chronometer.setFormat("00:00");
-
-		List<Time> time1 = new LinkedList<Time>();
-		List<Time> time2 = new LinkedList<Time>();
-
-		time1.add(getTimesFormados().get(0));
-		time2.add(getTimesFormados().get(1));
+		time1 = getTimesSelecionados().get(0);
+		time2 = getTimesSelecionados().get(1);
 
 		ExpandableListView listView = (ExpandableListView) findViewById(R.id.expandableListView1);
 		listView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
@@ -136,12 +132,28 @@ public class PartidaActivity extends PeladaFCActivity {
 	}
 
 	public void stopChronometer(View view) {
-		((Chronometer) findViewById(R.id.chronometer1)).stop();
-		running = false;
-		if(ring != null){
-			ring.stop();
+		
+		if(running){
+			((Chronometer) findViewById(R.id.chronometer1)).stop();
+			running = false;
+			if(ring != null){
+				ring.stop();
+			}
+			TextView textViewA = (TextView) findViewById(R.id.textGolsA);
+			int golsA = Integer.parseInt(textViewA.getText().toString());
+
+			TextView textViewB = (TextView) findViewById(R.id.textGolsB);
+			int golsB = Integer.parseInt(textViewB.getText().toString());
+			String message = null;
+			if (golsA > golsB){
+				message = "O time: "+time1.getNome()+" venceu!";
+			}else if(golsA < golsB){
+				message = "O time: "+time2.getNome()+" venceu!";
+			}else{
+				message = "Os times empataram";
+			}
+			showAlert(message);
 		}
-		showAlert();
 	}
 
 	public void pauseChronometer(View view) {
@@ -178,13 +190,13 @@ public class PartidaActivity extends PeladaFCActivity {
 			return true;
 		}
 	}
-	
-	public void showAlert(){
+
+	public void showAlert(String title){
 		AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
 
 		// set dialog message
 		alertDialogBuilder
-		.setTitle("A PARTIDA TERMINOU!!!")
+		.setTitle(title)
 		.setMessage("Deseja avaliar os jogadores?")
 		.setCancelable(false)
 		//.setCancelable(false)
@@ -194,9 +206,9 @@ public class PartidaActivity extends PeladaFCActivity {
 				// current activity
 				Intent intent = new Intent(PartidaActivity.this, ClassificarJogadoresActivity.class);
 				startActivity(intent);
-				
+
 			}
-			})
+		})
 		.setNegativeButton("Não", new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog,int id) {
 				// if this button is clicked, just close
@@ -204,7 +216,7 @@ public class PartidaActivity extends PeladaFCActivity {
 				PartidaActivity.this.finish();
 			}
 		}
-		);
+				);
 
 		// create alert dialog
 		AlertDialog alertDialog = alertDialogBuilder.create();
@@ -212,5 +224,4 @@ public class PartidaActivity extends PeladaFCActivity {
 		// show it
 		alertDialog.show();
 	}
-
 }

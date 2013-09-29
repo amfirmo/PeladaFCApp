@@ -7,19 +7,22 @@
     <string name="cad_jog">Cadastrar Jogador</string>
     <string name="sel_jog">Selecionar Jogador</string>
     <string name="sel_modalidade">Selecionar Modalidade</string>
-    <string name="create_teams">Criar Times(Sorteio)</string>
+    <string name="create_teams">Criar\\Sel. Times</string>
     <string name="start_game">Iniciar Partida</string>
     <string name="nome">Nome</string>
     <string name="apelido">Apelido</string>
     <string name="classificacao">Classificação</string>
     <string name="gravar">Gravar</string>
-    <string name="iniciar_partida">Iniciar</string>
+    <string name="iniciar_partida">Iniciar Partida</string>
+    <string name="iniciar">Iniciar</string>
     <string name="parar_partida">Parar</string>
     <string name="pausar_partida">Pausar</string>
     <string name="zero">0</string>
     <string name="versus">  X  </string>
     <string name="gol">Gol!</string>
     <string name="classificar_jogadores">Classificar Jogadores</string>
+    <string name="detalhes_dos_times">Jogadores de cada time:</string>
+    <string name="times_criados">Times que foram criados pelo sorteio:</string>
     
 
     <string-array name="jogadores_array">

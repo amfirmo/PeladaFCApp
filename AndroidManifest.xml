@@ -57,7 +57,8 @@
         <activity
             android:name="br.com.mackenzie.peladafc.activity.PartidaActivity"
             android:label="@string/app_name"
-            android:parentActivityName="br.com.mackenzie.peladafc.activity.MainActivity" >
+            android:parentActivityName="br.com.mackenzie.peladafc.activity.MainActivity"
+            android:noHistory="true" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="br.com.mackenzie.peladafc.activity.MainActivity" />
@@ -65,7 +66,8 @@
         <activity
             android:name="br.com.mackenzie.peladafc.activity.ClassificarJogadoresActivity"
             android:label="@string/app_name"
-            android:parentActivityName="br.com.mackenzie.peladafc.activity.PeladaFCActivity" >
+            android:parentActivityName="br.com.mackenzie.peladafc.activity.PeladaFCActivity"
+            android:noHistory="true" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="br.com.mackenzie.peladafc.activity.PeladaFCActivity" />

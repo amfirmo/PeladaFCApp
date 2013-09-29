@@ -66,10 +66,11 @@ public class TimesListClassificationAdapter extends BaseExpandableListAdapter {
     rat.setOnRatingBarChangeListener(new OnRatingBarChangeListener() {
       @Override
       public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser){ 
-    	  
-        Toast.makeText(activity, children.getNome()+": NOTA: "+rating, Toast.LENGTH_SHORT).show();
-        //TODO change classificacao to float
-        children.setClassificao((int) rating);
+        if(fromUser){
+        	Toast.makeText(activity, children.getNome()+": NOTA: "+rating, Toast.LENGTH_SHORT).show();
+        	//TODO change classificacao to float
+        	children.setClassificao((int) rating);
+        }
       }
     });
     

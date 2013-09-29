@@ -1,5 +1,6 @@
 package br.com.mackenzie.peladafc.activity;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -7,103 +8,82 @@ import android.annotation.TargetApi;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
+import android.util.SparseBooleanArray;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.ArrayAdapter;
 import android.widget.ExpandableListView;
 import android.widget.ListView;
 import br.com.mackenzie.peladafc.adapter.TimesListAdapter;
+import br.com.mackenzie.peladafc.model.Jogador;
 import br.com.mackenzie.peladafc.model.Time;
 
 public class CriarTimesActivity extends PeladaFCActivity  implements OnClickListener{
-	private List<Time> times = new LinkedList<Time>();
-	
+	private ArrayAdapter<Time> adapter2;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_criar_times);
+		List<Time> timesFormados = null;
+		if (getJogadoresSelecionados() == null || !getJogadoresSelecionados().isEmpty()) {
+			try {
+				timesFormados = 
+						getFacadeController()
+						.sortear(PeladaFCActivity.getJogadoresSelecionados(),
+								PeladaFCActivity.getModalidadeSelecionada().getJogadoresPorTime());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 
-		//findViewsById();
-		
-		
-		try {
-			getFacadeController().sortear(PeladaFCActivity.getJogadoresSelecionados(),
-										  PeladaFCActivity.getModalidadeSelecionada().getJogadoresPorTime());
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
+			setTimesFormados(timesFormados);
 		}
-		
-		
-		try {
-			
-			//listaTimes.add(getFacadeController().obterTimePorId(0));
-			//listaTimes.add(getFacadeController().obterTimePorId(1));
-			Time timeA = new Time();
-			timeA.setNome("A");
-			timeA.setEscalacao(getJogadoresSelecionados());
-			Time timeB = new Time();
-			timeB.setEscalacao(getJogadoresSelecionados());
-			timeB.setNome("B");
-			
-			times.add(0, timeA);
-			times.add(1, timeB);
-			
-			setTimesFormados(times);
-
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-	    ExpandableListView listView = (ExpandableListView) findViewById(R.id.listView1);
-	    listView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
-	    TimesListAdapter adapter = new TimesListAdapter(this,times);
-	    listView.setAdapter(adapter);
-		
-		
-/*
-		adapter = new ArrayAdapter<Time>(this,
-				android.R.layout.simple_expandable_list_item_1,
-				listaTimes);
-
+		//primeira lista simples com os times formados
+		ExpandableListView listView = (ExpandableListView) findViewById(R.id.listView1);
 		listView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+		TimesListAdapter adapter = new TimesListAdapter(this,getTimesFormados());
 		listView.setAdapter(adapter);
-*/
-		
-		
+
+		//monta a segunda lista com os detalhes de cada time
+		ListView listView2 = (ListView) findViewById(R.id.listView2);
+		adapter2 = new ArrayAdapter<Time>(this,
+				android.R.layout.simple_list_item_multiple_choice,
+				getTimesFormados());
+
+		listView2.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+		listView2.setAdapter(adapter2);
+
+
 	}
 
 	@Override
 	public void onBackPressed()
 	{
-/*		SparseBooleanArray checked = listView.getCheckedItemPositions();
-		timesSelecionados = new ArrayList<Time>();
+		ListView listView = (ListView) findViewById(R.id.listView2);
+		SparseBooleanArray checked = listView.getCheckedItemPositions();
+		byte totalTimesSelecionados = 0;
+		setTimesSelecionados(new ArrayList<Time>(2));
 
-		for (int i = 0; i < checked.size(); i++) {
+		for (int i = 0; i < checked.size() && totalTimesSelecionados<2; i++) {
 			// Item position in adapter
 			int position = checked.keyAt(i);
 			// Add sport if it is checked i.e.) == TRUE!
-			if (checked.valueAt(i))
-				timesSelecionados.add(adapter.getItem(position));
+			if (checked.valueAt(i)){
+				totalTimesSelecionados++;
+				getTimesSelecionados().add(adapter2.getItem(position));
+			}	
 		}
-*/
-/*		Jogador[] outputStrArr = new Jogador[modalidadeSelecionada.size()];
-
-		for (int i = 0; i < modalidadeSelecionada.size(); i++) {
-			outputStrArr[i] = modalidadeSelecionada.get(i);
+		
+		if(totalTimesSelecionados<2){
+			showMessageShort("Selecione pelo menos dois times!");
+		}else{
+			showMessageShort("Sua Seleção foi Gravada com Sucesso!");
 		}
- 		*/
-		//showMessageShort("Sua Seleção foi Gravada com Sucesso!");
 		super.onBackPressed();
 	}
 
-/*	private void findViewsById() {
-		listView = (ListView) findViewById(R.id.listView1);
-		//button = (Button) findViewById(R.id.testbutton);
-	}
-*/
 	/**
 	 * Set up the {@link android.app.ActionBar}, if the API is available.
 	 */
@@ -140,7 +120,7 @@ public class CriarTimesActivity extends PeladaFCActivity  implements OnClickList
 
 	@Override
 	public void onClick(View v) {
-/*		
+		/*		
 		SparseBooleanArray checked = listView.getCheckedItemPositions();
 		ArrayList<Time> jogadoresSelecionados = new ArrayList<Time>();
 		for (int i = 0; i < checked.size(); i++) {
@@ -156,7 +136,7 @@ public class CriarTimesActivity extends PeladaFCActivity  implements OnClickList
 		for (int i = 0; i < modalidadeSelecionada.size(); i++) {
 			outputStrArr[i] = modalidadeSelecionada.get(i);
 		}
-*/		
+		 */		
 		/*
         Intent intent = new Intent(getApplicationContext(), ResultActivity.class);
 

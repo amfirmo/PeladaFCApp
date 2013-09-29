@@ -38,8 +38,8 @@ public class SelecionarModalidadeActivity extends PeladaFCActivity  implements O
 		}
 
 		adapter = new ArrayAdapter<Modalidade>(this,
-				android.R.layout.simple_list_item_single_choice,
-				listaModalidades);
+											   android.R.layout.simple_list_item_single_choice,
+											   listaModalidades);
 
 		listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
 		listView.setAdapter(adapter);
