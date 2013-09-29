@@ -1,7 +1,6 @@
 package br.com.mackenzie.peladafc.activity;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 import android.annotation.TargetApi;
@@ -17,7 +16,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ExpandableListView;
 import android.widget.ListView;
 import br.com.mackenzie.peladafc.adapter.TimesListAdapter;
-import br.com.mackenzie.peladafc.model.Jogador;
 import br.com.mackenzie.peladafc.model.Time;
 
 public class CriarTimesActivity extends PeladaFCActivity  implements OnClickListener{
@@ -120,35 +118,6 @@ public class CriarTimesActivity extends PeladaFCActivity  implements OnClickList
 
 	@Override
 	public void onClick(View v) {
-		/*		
-		SparseBooleanArray checked = listView.getCheckedItemPositions();
-		ArrayList<Time> jogadoresSelecionados = new ArrayList<Time>();
-		for (int i = 0; i < checked.size(); i++) {
-			// Item position in adapter
-			int position = checked.keyAt(i);
-			// Add sport if it is checked i.e.) == TRUE!
-			if (checked.valueAt(i))
-				jogadoresSelecionados.add(adapter.getItem(position));
-		}
-
-/*		Jogador[] outputStrArr = new Jogador[modalidadeSelecionada.size()];
-
-		for (int i = 0; i < modalidadeSelecionada.size(); i++) {
-			outputStrArr[i] = modalidadeSelecionada.get(i);
-		}
-		 */		
-		/*
-        Intent intent = new Intent(getApplicationContext(), ResultActivity.class);
-
-        // Create a bundle object
-        Bundle b = new Bundle();
-        b.putStringArray("selectedItems", outputStrArr);
-
-        // Add the bundle to the intent.
-        intent.putExtras(b);
-
-        // start the ResultActivity
-        startActivity(intent);
-		 */
+		
 	}
 }
