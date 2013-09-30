@@ -41,8 +41,8 @@ public class PartidaActivity extends PeladaFCActivity {
 			public void onChronometerTick(Chronometer chronometer) {
 				long elapsedMillis = SystemClock.elapsedRealtime() - chronometer.getBase();
 				
-				//TODO o tempo deve ser o definido na modalidade
-				if(elapsedMillis>10000){
+				//converte o tempo definido em minutos para milis
+				if(elapsedMillis> ((getModalidadeSelecionada().getTempoDaPartida()*60)*1000)){
 
 					((Chronometer) findViewById(R.id.chronometer1)).stop();
 
