@@ -84,7 +84,7 @@ public class DbHelper extends SQLiteOpenHelper {
 	 
 		@Override
 		public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-			Log.w(DbAdapter.class.getName(),  "Atualizando o banco de dados da versão " + oldVersion
+			Log.w("Update base de dados",  "Atualizando o banco de dados da versão " + oldVersion
 					+ " para " + newVersion
 					+ ", todos os dados serão perdidos!");
 			//TODO ADICIONAR TODAS AS TABELAS AQUI 

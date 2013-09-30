@@ -13,7 +13,6 @@ import android.widget.RatingBar;
 import android.widget.RatingBar.OnRatingBarChangeListener;
 import android.widget.TextView;
 import android.widget.Toast;
-import br.com.mackenzie.peladafc.activity.PeladaFCActivity;
 import br.com.mackenzie.peladafc.activity.R;
 import br.com.mackenzie.peladafc.model.Jogador;
 import br.com.mackenzie.peladafc.model.Time;

@@ -68,9 +68,6 @@ public class FacadeController {
 		return timeController.sortear(jogadores, qtdJogadoresPorTime);
 	}
 	
-	public Time obterTimePorId(int id) throws DAOException{
-		return this.timeController.obterTimePorId(id);
-	}
 
 	
 }

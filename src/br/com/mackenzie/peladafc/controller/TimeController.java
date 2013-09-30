@@ -7,7 +7,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import br.com.mackenzie.peladafc.dao.TimeDAO;
 import br.com.mackenzie.peladafc.exception.DAOException;
 import br.com.mackenzie.peladafc.model.Jogador;
 import br.com.mackenzie.peladafc.model.Time;
@@ -31,18 +30,7 @@ public class TimeController {
 	/** */
 	private List<Time> times;
 	
-	/** */
-	public JogadorController jogadorController;
-	
-	/** */
-	public Time time;
-	
-	/** */
-	public ModalidadeController modalidadeController;
-	
-	/** */
-	public TimeDAO timeDAO ;
-	
+
 	public TimeController() {
 		setTimes(new ArrayList<Time>());
 	}
@@ -89,15 +77,12 @@ public class TimeController {
  				for (Jogador j : jogadores) {
  					time.adicionar(j);
  				}
+ 				Jogador nomePrimeiroJogadorNomearaTime = time.getEscalacao().get(0);
+ 				time.setNome(nomePrimeiroJogadorNomearaTime.getApelido());
  				listTimes.add(time);
  			}
  			
  		return listTimes;	
-	}
-	
-	/** */
-	public Time obterTimePorId(int id) {
-		return timeDAO.obterTime(id);
 	}
 	
 	private Map<String, Integer> gerarQuantidadeTime(Integer totalJogador, Integer maxPorTime) {
