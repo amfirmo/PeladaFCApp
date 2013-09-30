@@ -32,9 +32,6 @@ public class TimeController {
 	private List<Time> times;
 	
 	/** */
-	public SorteioStrategy sorteioStrategy;
-	
-	/** */
 	public JogadorController jogadorController;
 	
 	/** */
@@ -74,6 +71,8 @@ public class TimeController {
 	 			//Jogador j = jogadores.get(tamanho);
 	 			
 				if (time.getEscalacao().size() >= qtdJogadoresPorTime) {
+					Jogador nomePrimeiroJogadorNomearaTime = time.getEscalacao().get(0);
+					time.setNome(nomePrimeiroJogadorNomearaTime.getApelido());
 					listTimes.add(time);
 					break;
 				} else {
@@ -98,7 +97,7 @@ public class TimeController {
 	
 	/** */
 	public Time obterTimePorId(int id) {
-		return null;
+		return timeDAO.obterTime(id);
 	}
 	
 	private Map<String, Integer> gerarQuantidadeTime(Integer totalJogador, Integer maxPorTime) {

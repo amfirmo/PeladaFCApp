@@ -5,7 +5,6 @@ import java.util.List;
 import android.content.Context;
 import br.com.mackenzie.peladafc.controller.JogadorController;
 import br.com.mackenzie.peladafc.controller.ModalidadeController;
-import br.com.mackenzie.peladafc.controller.PartidaController;
 import br.com.mackenzie.peladafc.controller.TimeController;
 import br.com.mackenzie.peladafc.exception.DAOException;
 import br.com.mackenzie.peladafc.model.Jogador;
@@ -16,7 +15,6 @@ public class FacadeController {
 
 	private JogadorController jogadorController;
 	private ModalidadeController modalidadeController;
-	private PartidaController partidaController;
 	private TimeController timeController;
 	
 	public FacadeController(Context context){
